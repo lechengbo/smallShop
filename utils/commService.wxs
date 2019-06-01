@@ -1,0 +1,10 @@
+//const service = require("../services/shopService.js");
+//const util=require("./util.js");
+var app=getApp();
+function getTitle(key) {
+
+}
+
+module.exports={
+  getTitle:getTitle,
+}

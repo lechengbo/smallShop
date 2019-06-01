@@ -1,0 +1,14 @@
+/* pages/couponDetail/index.wxss */
+.couponcontainer{
+  padding: 6rpx;
+}
+.price{
+  color: red;
+  font-size: 35rpx;
+}
+.row-box input{
+  width: 150px;
+}
+.row-box button{
+  margin-left: 30rpx;
+}

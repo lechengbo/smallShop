@@ -1,0 +1,15 @@
+
+
+.row-lable{
+  min-width: 33px;
+ 
+}
+.row-box input{
+  width: 150px;
+}
+.row-box button{
+  margin-left: 30rpx;
+}
+.form{
+  margin-left: 35px;
+}

@@ -1,0 +1,116 @@
+<!--index.wxml-->
+<!--1px = 750/320 = 2.34rpx;-->
+<view class="container">
+  <view wx:if="{{noticeList}}" class="notice" style='margin-top:0rpx;' wx:if="{{ noticeList.length>0}}">
+    <view class="notice_iteml">{{pageInfo.NoticeName || '公告' }}：</view>
+    <swiper class="notice_swiper" vertical="true" autoplay="true" circular="true" interval="3000">
+      <navigator wx:for-items="{{noticeList}}" wx:key="Id" url="/pages/notice/index?id={{item.Id}}" open-type="navigate">
+        <swiper-item>
+          <view class="notice_itemr">{{item.Title}}</view>
+        </swiper-item>
+      </navigator>
+    </swiper>
+  </view>
+  <view class="swiper-container">
+    <swiper class="swiper_box" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+      <block wx:for="{{loopPicList}}" wx:key="Id">
+        <swiper-item>
+          <image data-id="{{item.Id}}" src="{{ picUrl +item.Url}}" class="slide-image" width="750rpx" height="562.5rpx" />
+        </swiper-item>
+      </block>
+    </swiper>
+
+  </view>
+
+  <view wx:if="{{helperList}}" class="notice" wx:if="{{ helperList.length>0}}">
+    <view class="notice_iteml" style='width:auto;'>{{pageInfo.HelperName || '帮助中心'}}：</view>
+    <swiper style='width:520rpx' class="notice_swiper" vertical="true" autoplay="true" circular="true" interval="3000">
+      <navigator wx:for-items="{{helperList}}" wx:key="Id" url="/pages/helper/index?id={{item.Id}}" open-type="navigate">
+        <swiper-item>
+          <view class="notice_itemr">{{item.Title}}</view>
+        </swiper-item>
+      </navigator>
+    </swiper>
+  </view>
+  <view class="coupons" wx:if="{{couponList.length>0 }}">
+    <scroll-view class="coupons-scroll" scroll-x="true">
+      <view class="coupons-item" wx:for-items="{{couponList}}" wx:for-index="idx" wx:key="Id" data-id="{{item.Id}}" bindtap='gotoCouponDetail'>
+        <view style="font-size: 35rpx"> ￥ {{item.PriceVal}}元 </view>
+        <view> {{item.Name}} </view>
+        <view> {{item.Note}}</view>
+        <view> {{item.Expire}} 前有效 </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='shopInfo'>
+    <view class="swiper-tab">
+      <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">
+        {{pageInfo.ShopIntro || '店铺介绍'}}
+      </view>
+      <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">{{ pageInfo.EnviPic || '环境图片'}}</view>
+
+    </view>
+    <view wx:if="{{currentTab==0}}" style='margin:30rpx;'>
+      <view class='row-box'>
+        <view class='row-lable'>
+          联系方式：
+        </view>
+        <view class='right-text'>
+          {{shop.PhoneNO}}
+        </view>
+        <view style='padding-left:60rpx;' bindtap='callTap' data-phone="{{shop.PhoneNO}}">
+          <image src='../../images/tel.png' class='icon'></image>
+        </view>
+      </view>
+      <view class='row-box'>
+        <view class='row-lable'>
+          地址：
+        </view>
+        <view class='right-text'>
+          {{ shop.Address.Address}}
+        </view>
+        <view style='padding-left:30rpx;' bindtap='openMap'>
+          <image src='../../images/ico-addr.png' class='icon'></image>
+        </view>
+      </view>
+      <view class='row-box' wx:if="{{shop.PrimeService}}">
+        <view class='row-lable'>
+          主营业务：
+        </view>
+        <view class='right-text'>
+          <text>{{shop.PrimeService}}</text>
+        </view>
+      </view>
+      <view class='row-box' wx:if="{{shop.Description}}">
+        <view class='row-lable'>
+          店铺介绍:
+        </view>
+        <view class='right-text'>
+          <text>{{shop.Description}}</text>
+
+        </view>
+      </view>
+      <view class='row-box' wx:for-items="{{shop.CustomerPropertyList}}" wx:key="{{index}}">
+        <view class='row-lable'>
+          {{ item.Key}} ：
+        </view>
+        <view class='right-text'>
+          <text>{{item.Value}}</text>
+
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{ currentTab==1}}" class='bd'>
+      <view class='item' wx:for-items="{{showPicList}}" wx:for-index="idx" wx:key="Id" data-id="{{item.Id}}" data-url="{{ item.Url}}" bindtap='showBigPic'>
+        <image class='icon' src='{{ picUrl + item.Url}}_s.jpg'></image>
+        <text class='txt'> {{ item.Note}}</text>
+      </view>
+    </view>
+
+
+
+  </view>
+
+</view>
+<show-big-pic wx:if="{{ isShowBigPic}}" url='{{ picUrl + bigPicUrl}}' bind:close="closeBigPic"></show-big-pic>

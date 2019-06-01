@@ -1,0 +1,12 @@
+<view class='container'>
+  <view class='item' wx:for-items="{{helperList}}" wx:key="Id" wx:for-index="idx">
+    <view class="title {{item.Id==currentId?'active':''}}"  bindtap='helperTap' data-id="{{ item.Id}} "> {{idx+1}}、{{ item.Title}}</view>
+    <view class='contentContainer' wx:if="{{item.Id==currentId }}">
+      <view class='content'>
+      <text>{{item.Content}}</text>
+      
+      </view>
+    </view>
+  </view>
+  
+</view>

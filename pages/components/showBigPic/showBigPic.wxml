@@ -1,0 +1,15 @@
+<view  class="pic-view">
+  <view class="back-mask" bindtap="close"></view>
+  <view class='pic-container'>
+    <view class="pic-content">
+      <image class='icon' src='{{ url}}' mode="widthFix" />
+      
+    </view>
+    <view style='text-align: center;margin-top:20rpx;'>
+      <icon class='close' type="cancel" color='rgb(255,255,255)' bindtap='close'></icon>
+    </view>
+    
+  </view>
+
+
+</view>

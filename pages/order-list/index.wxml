@@ -1,0 +1,45 @@
+<view class="container">
+  <view class="status-box">
+    <view bindtap="statusTap" class="status-label {{index == currentStatus ? 'active' : ''}}" wx:for-items="{{statusType}}" wx:key="{{index}}" data-index="{{index}}">
+      {{item}}
+      <view class="{{tabClass[index]}}"></view>
+    </view>
+  </view>
+  <view class="no-order" wx:if="{{orderList.length<=0 ? true : false}}">
+    <image src="/images/no-order.png" class="no-order-img"></image>
+    <view class="text">暂无订单</view>
+  </view>
+  <view class="order-list" wx:if="{{orderList.length>0 ? true : false}}">
+    <view class="a-order" wx:for-items="{{orderList}}" wx:key="{{index}}">
+      <view class="order-date">
+        <view class="date-box">下单时间：{{item.createdTime}}</view>
+
+      </view>
+      <view class="goods-info" bindtap="orderDetail" data-index="{{index}}" data-guid="{{item.guid}}">
+        <view class="goods-des">
+
+          <text wx:for="{{item.goodsList}}" wx:for-item="goods" wx:key="{{index}}">{{goods.Name}} <text wx:if="{{goods.SpecName}}">({{goods.SpecName}})</text>;</text>
+
+        </view>
+      </view>
+      <view class="order-date" wx:if="{{item.note && item.note != ''}}">
+        <view class="date-box">备注： {{item.note}}</view>
+      </view>
+      <view>
+        <scroll-view class="goods-img-container" scroll-x="true">
+          <view class="img-box" wx:for="{{item.goodsList}}" wx:for-item="goods" wx:key="{{index}}">
+            <image src="{{picUrl+goods.ShowUrl}}_s.jpg" class="goods-img"></image>
+          </view>
+        </scroll-view>
+      </view>
+      <view class="price-box">
+        <view class="total-price">合计：¥ {{item.totalPrice}}元；共 {{item.totalNum}}件</view>
+        <view wx:if="{{item.status==1? true : false}}" style='margin-left:40rpx;'> {{item.payDes}}</view>
+          <view class="btn cancel-btn" wx:if="{{item.status==0? true : false}}" bindtap="cancelOrderTap" data-guid="{{item.guid}}">取消订单</view>
+          <view class="btn topay-btn" wx:if="{{item.status==0? true : false}}" bindtap="toPayTap" data-guid="{{item.guid}}" data-money="{{item.totalPrice}}">马上付款</view>
+        
+      </view>
+    </view>
+
+  </view>
+</view>

@@ -1,0 +1,23 @@
+/node_modules/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+###spring log ###
+spring.log.*.gz
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+*.log
+/bin/
+
+###uploadimages###
+/adavatarImages/

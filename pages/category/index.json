@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "所有分类",
+  "usingComponents": {
+    "show-spec": "../components/showSpec/index"
+  }
+}

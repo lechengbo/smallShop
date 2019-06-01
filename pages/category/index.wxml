@@ -1,0 +1,43 @@
+<view class="container">
+  <view class="search-header">
+    <view class="input-box">
+      <image class="icon" src="../../images/search-pic.png"></image>
+      <input name="input" class="keywrod" focus="true" value="{{keyword}}" confirm-type="search" bindinput="inputChange" bindfocus='inputFocus' bindconfirm="onKeywordConfirm" confirm-type="search" placeholder="请输入搜索关键字" />
+      <image class="del" wx:if="{{keyword}}" bindtap="clearKeyword" src="../../images/popup-close.png"></image>
+    </view>
+  </view>
+  <view class="catalog">
+    <scroll-view class="nav" scroll-y="true">
+      <view class="item {{ currentCategory.Id == item.Id ? 'active' : ''}}" wx:for="{{categoryList}}" wx:key="item" data-id="{{item.Id}}" data-index="{{index}}" bindtap="switchCate">{{item.Name}}</view>
+    </scroll-view>
+    <scroll-view class="cate" scroll-y="true">
+      <view class="goods-container">
+       
+        <view class="goods-box" wx:for-items="{{currentGoods}}" wx:key="{{Id}}" >
+          <view class="img-box" bindtap="toDetailsTap"  data-id="{{item.Id}}">
+            <image src="{{picUrl+ item.LoopPicList[0]}}_s.jpg" class="image" mode="aspectFill" lazy-load="true" />
+          </view>
+
+          <view>
+            <view class="goods-title">{{item.Name}}</view>
+            <view class="goods-price">
+              <text> ¥ {{item.Price}}<span> </span> 
+              </text>
+              
+              <text wx:if="{{item.MarketPrice && item.MarketPrice > 0}}" class="market-price">¥ {{item.MarketPrice}}</text>
+               <image bindtap='bindGuiGeTap' data-index="{{index}}"   src='../../images/nav/cart-on.png'></image>
+            </view>
+           
+          </view>
+        </view>
+      </view>
+      <view hidden="{{currentGoods.length>0 ? true : false}}" class="no-more-goods">还没有添加，稍后再来试试吧</view>
+      <view hidden="{{currentGoods.length>0 ? false : true}}" class="no-more-goods">
+      没有更多啦
+      </view>
+
+    </scroll-view>
+  </view>
+</view>
+
+<show-spec wx:if="{{ !hideShopPopup}}" goods="{{ selectedGoods }}" pageInfo="{{specPageInfo}}" shopType="{{shopType}}"  bind:closePopupTap="closePopupTap"></show-spec> 

@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="search-header">
+    <view class="input-box">
+      <image class="icon" src="../../../images/search-pic.png"></image>
+      <input name="input" class="keywrod" focus="true" value="{{keyword}}" confirm-type="search" bindinput="inputChange" placeholder="请输入手机号码或唯一标识" />
+      <image class="del" wx:if="{{keyword}}" bindtap="clearKeyword" src="../../../images/popup-close.png"></image>
+    </view>
+    <view class='buttonContainer'>
+      <button size='mini' bindtap='search'>搜索</button>
+    </view>
+  </view>
+  <scroll-view scroll-y="true">
+
+    <view class='couponContainer'>
+      <view class="coupons-item" wx:for-items="{{couponLogList}}" wx:for-index="idx" wx:key="*this" data-id="{{item.Coupon.Id}}" bindtap='gotoCouponDetail'>
+        <view style="font-size: 35rpx"> ￥ {{item.Coupon.PriceVal}}元 </view>
+        <view> {{item.Coupon.Name}} </view>
+        <view> {{item.Coupon.Note}}</view>
+        <view wx:if="{{!item.IsExpire}}">  在有效期中 </view>
+        <view class='toast' wx:if="{{item.IsExpire}}">已经过期</view>
+        <view class='toast' wx:if="{{!item.IsExpire && item.DistanceDay<=10 }}">还有
+        <text style='font-size:30rpx;'>{{item.DistanceDay}}</text>即将过期</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

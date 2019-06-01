@@ -1,0 +1,36 @@
+/* pages/ucenter/myCoupon/index.wxss */
+.couponContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap:wrap;
+  box-sizing:content-box;
+  width:100%;
+}
+.coupons-item{
+  width:45%;
+  height: 180rpx;
+  margin: 10rpx;
+  padding-top: 20rpx;
+  padding-left: 15rpx;
+  background-color: #f1a83b;
+  box-sizing: content-box;
+  font-size: 25rpx;
+  line-height: 40rpx;
+  overflow: hidden;
+  color: #fff;
+  display: inline-block;
+  position: relative;
+}
+.buttonContainer{
+  height:59rpx;
+  line-height:130rpx;
+}
+.toast{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  background: red;
+  color: white;
+  border-radius: 10%;
+}

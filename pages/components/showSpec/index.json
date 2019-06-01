@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "show-big-pic": "../showBigPic/showBigPic"
+  }
+}

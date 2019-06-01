@@ -1,0 +1,71 @@
+<view class='couponcontainer'>
+  
+  <view class='row-box'>
+    <view class='row-lable'>
+      价值：
+    </view>
+    <view class='right-text'>
+      <text class='price'> ￥ {{coupon.PriceVal}} 元</text>
+    </view>
+  </view>
+  <view class='row-box'>
+    <view class='row-lable'>
+      名称：
+    </view>
+    <view class='right-text'>
+      <text>{{coupon.Name}}</text>
+    </view>
+  </view>
+  <view class='row-box'>
+    <view class='row-lable'>
+      有效期：
+    </view>
+    <view class='right-text'>
+      <text>{{coupon.Expire}}</text>
+    </view>
+  </view>
+  <view class='row-box'>
+    <view class='row-lable'>
+      说明：
+    </view>
+    <view class='right-text'>
+      <text>{{coupon.Note}}</text>
+    </view>
+  </view>
+  <view class='row-box'>
+    <view class='row-lable'>
+      限领：
+    </view>
+    <view class='right-text'>
+      <text wx:if="{{coupon.LimitPerPerson}}">{{coupon.LimitPerPerson}} 张/人</text>
+      <text wx:if="{{coupon.LimitPerPerson<=0}}"> 不限制</text>
+    </view>
+  </view>
+
+  <view wx:if="{{!onlyShowDetail}}" style='margin-top:30rpx;'>
+    <button size='default' bindtap='userGetCoupon'>我要领取</button>
+    <view class='row-box' wx:if="{{willGet}}">
+      <view class='row-lable'>
+        手机号码：
+      </view>
+      <view class='right-text'>
+        <input placeholder='请输入你的手机号码或者唯一标识' value="{{ user.mobile}}" bindinput='userMobileChange'></input>
+        
+      </view>
+      <view>
+      <button size='mini' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">授权 </button>
+      </view>
+    </view>
+    <view class='row-box' wx:if="{{willGet}}">
+      <view class='row-lable' style='width:55px;'>
+        姓名：
+      </view>
+      <view class='right-text'>
+        <input placeholder='请输入你的名字' value='{{user.name}}' bindinput='userNameChange'></input>
+      </view>
+      <view>
+      <button size='mini' bindtap="goLogin">授权</button>
+      </view>
+    </view>
+  </view>
+</view>

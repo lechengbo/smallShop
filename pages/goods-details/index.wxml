@@ -1,0 +1,74 @@
+<view class="container">
+  <view class="swiper-container" wx:if="{{!goods.VideoSrc}}">
+    <swiper class="swiper_box" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+      <block wx:for="{{goods.LoopPicList}}" wx:key="Id">
+        <swiper-item>
+          <image src="{{picUrl+item}}" class="slide-image" width="480px" mode="aspectFit" lazy-load="true" />
+        </swiper-item>
+      </block>
+    </swiper>
+
+  </view>
+  <view class="swiper-container" wx:if="{{goods.VideoSrc}}">
+    <video src="{{goods.VideoSrc}}" autoplay="true" loop="true" style='width:100%'></video>
+  </view>
+  <view class="goods-info">
+    <view class="goods-title">{{goods.Name}}</view>
+
+    <view class="goods-price" style="padding-left:35rpx;">¥ {{priceRange}}</view>
+
+    <view class="goods-info-fx">
+      <image src='../../images/qd.png' />
+      <button open-type="share">分享</button>
+      <text>{{pageInfo.Share || '分享' }}</text>
+    </view>
+  </view>
+
+  <view wx:if="{{goods.SpecList&& goods.SpecList.length>0}}" class="row-arrow spec-container" bindtap="bindGuiGeTap">
+    {{ pageInfo.Spec || '规格'}} :
+    <text wx:for="{{ goods.SpecList }}" wx:key="{{Id}}"> {{ item.Name}}</text>
+  </view>
+  <view class="goods-des-info">
+    <view class="swiper-tab">
+      <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">
+        {{ pageInfo.GoodsIntro || '商品介绍'}}
+      </view>
+      <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">{{ pageInfo.PicDes || '图片描述'}}</view>
+    </view>
+
+    <view class="goods-text" wx:if="{{currentTab==0}}">
+      <view class='property' wx:if="{{goods.CustomerPropertyList && goods.CustomerPropertyList.length>0}}">
+        <text>{{ pageInfo.PropCustInfo || '属性'}}</text>
+        <view class='row-box' wx:for-items="{{goods.CustomerPropertyList}}" wx:key="*this">
+          <view class='row-lable'>
+            {{ item.Key}} ：
+          </view>
+          <view class='right-text'>
+            <text>{{item.Value}}</text>
+
+          </view>
+        </view>
+      </view>
+      <text>{{goods.Description}}</text>
+    </view>
+    <view wx:if="{{currentTab==1}}">
+      <image lazy-load="true" mode="widthFix" class='icon' wx:for="{{goods.PicDescriptionList}}" wx:key="*this" src='{{ picUrl+ item}}'></image>
+    </view>
+  </view>
+
+  <view class="footer-box">
+    <!-- <view class="contact">
+      <contact-button style="opacity:0;position:absolute;" type="default-dark" session-from="weapp" size="27"></contact-button>
+      <view style='position:absolute;bottom:10rpx;'> 客服 </view>
+    </view> -->
+    <view class="shop-cart-btn" bindtap="goShopCar">
+      <view class="shop-num">({{shopNum}})</view>
+      <view style='position:absolute;bottom:10rpx;'> {{ pageInfo.Car || '购物车'}} </view>
+    </view>
+    <view class="join-shop-cart" bindtap="toAddShopCar">{{ pageInfo.AddCar || '加入购物车'}}</view>
+    <view class="now-buy" bindtap="tobuy">{{ pageInfo.BuyNow || '立即购买'}}</view>
+  </view>
+
+</view>
+
+<show-spec wx:if="{{ !hideShopPopup}}" goods="{{ goods }}" pageInfo="{{ pageInfo}}" shopType="{{shopType}}" bind:closePopupTap="closePopupTap"></show-spec>

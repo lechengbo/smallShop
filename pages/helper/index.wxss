@@ -1,0 +1,38 @@
+/* pages/notice/index.wxss */
+.container {
+ padding:30rpx;
+  min-height: 100%;
+}
+
+.item{
+  display: flex;
+  flex-direction: column;
+  padding: 10rpx;
+  border-bottom: 1rpx solid #d9d9d9;
+  font-size: 34rpx;
+  width:100%;
+  margin-bottom:30rpx;
+
+}
+.item .title{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.item .active{
+ color: #e3320f;
+}
+.item .contentContainer{
+  margin-left: 45rpx;
+  margin-bottom: 20rpx;
+}
+
+.item .content{
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  color: #999;
+}
+.content textarea{
+  padding-left: 10rpx;
+  width: 100%;
+}

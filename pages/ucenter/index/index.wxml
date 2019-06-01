@@ -1,0 +1,52 @@
+<view class="container">
+  <view class="profile-info" bindtap="goLogin">
+    <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+    <view class="info">
+      <text class="name">{{userInfo.nickName || "Hi,游客,请授权"}}</text>
+      <!-- <text class="level">{{userInfo.username}}</text> -->
+    </view>
+  </view>
+
+  <view class="user-menu">
+    <view class="item">
+      <navigator url="/pages/order-list/index" class="a">
+        <text class="icon order"></text>
+        <text class="txt">{{ pageInfo.MyOrder || '我的订单'}}</text>
+      </navigator>
+    </view>
+    <view class="item">
+      <navigator url="/pages/ucenter/myCoupon/index" class="a">
+        <text class="icon coupon"></text>
+        <text class="txt">{{ pageInfo.Coupon || '优惠券'}}</text>
+      </navigator>
+    </view>
+
+    <view class="item no-border">
+      <navigator url="/pages/helper/index" class="a">
+        <text class="icon help"></text>
+        <text class="txt">{{ pageInfo.Helper || '帮助中心'}}</text>
+      </navigator>
+    </view>
+     <view class="item ">
+      <navigator url="/pages/notice/index" class="a">
+        <text class="icon kefu"></text>
+        <text class="txt">{{pageInfo.Notice || '公告'}}</text>
+      </navigator>
+    </view>
+    <view class="item ">
+      <navigator url="/pages/ucenter/feedback/feedback" class="a">
+        <text class="icon feedback"></text>
+        <text class="txt">{{ pageInfo.Advice || '意见反馈'}}</text>
+      </navigator>
+    </view>
+    <view class="item no-border" bindtap='clear'>
+      <text class='a'>
+        <text class="icon security"></text>
+        <text class="txt">{{ pageInfo.ClearnCache || '清理缓存'}}</text>
+      </text>
+      
+    </view>
+  </view>
+
+  <!--<view class="logout" bindtap="exitLogin">退出登录</view>-->
+</view>

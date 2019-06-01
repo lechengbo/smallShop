@@ -1,0 +1,43 @@
+<view class="show-popup">
+    <view class="popup-mask" bindtap="closePopupTap"></view>
+    <view class="popup-contents">
+      <view class="pop-goods-info">
+        <view class='pop-title-box' wx:if="{{ currentSpec&&currentSpec.Id }}">
+          <view class="pop-img-box" wx:if="{{currentSpec.Url}}">
+            <image src="{{ picUrl+ currentSpec.Url}}_s.jpg" class="goods-thumbnail" bindtap='showBigPic' />
+          </view>
+          <view class="pop-goods-des">
+            <view class="pop-goods-title">{{goods.Name}}</view>
+            <view class="pop-goods-price">¥ {{currentSpec.Price}}</view>
+          </view>
+        </view>
+
+        <view class="pop-goods-close" bindtap="closePopupTap"></view>
+      </view>
+      <view class="spec-label-box">
+        <view class="label-item-box">
+          <view class="label-item {{item.Name==currentSpec.Name ? 'active' : '' }}" wx:for="{{goods.SpecList}}" wx:key="Id" bindtap="labelItemTap" data-propertyindex="{{idx}}" data-id="{{ item.Id }}">
+            {{item.Name}}
+          </view>
+        </view>
+      </view>
+      <view class="buy-num-box">
+        <view class="num-label">{{pageInfo.BuyNum || '购买数量'}}</view>
+        <view class="num-box">
+          <view class="num-jian {{buyNumber == 1 ? 'hui': ''}}" bindtap="numJianTap">-</view>
+          <view class="num-input">
+            <input type="number" value="{{buyNumber}}" disabled/>
+          </view>
+          <view class="num-jia" bindtap="numJiaTap">+</view>
+        </view>
+      </view>
+      <view class="popup-join-btn" wx:if="{{shopType =='addShopCar'}}" bindtap="addShopCar">
+        {{ pageInfo.AddCar || '加入购物车'}}
+      </view>
+      <view class="popup-join-btn" wx:if="{{shopType =='tobuy'}}" bindtap="buyNow">
+        {{ pageInfo.BuyNow || '立即购买'}}
+      </view>
+    </view>
+  </view>
+
+  <show-big-pic wx:if="{{ isShowBigPic}}" url='{{ picUrl +  currentSpec.Url}}' bind:close="closeBigPic"></show-big-pic>

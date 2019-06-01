@@ -1,0 +1,44 @@
+<view class="container">
+   
+    <view class="goods-list">
+            <view class="list-title">商品信息</view>
+            <form>
+            <block wx:for-items="{{order.goodsList}}" wx:key="{{index}}">
+            <view class="a-goods">
+                <view class="img-box">
+                    <image src="{{ picUrl+item.ShowUrl}}" class="img" />
+                </view>
+                <view class="text-box">
+                    <view class="arow arow01">
+                        <view class="goods-name">{{item.Name}}</view>
+                        <view class="goods-price">¥ {{item.Price}}</view>
+                    </view>
+                    <view class="arow">
+                        <view class="goods-label">{{item.SpecName}}</view>
+                        <view class="goods-num">x {{item.Num}}</view>
+                    </view>
+                </view>
+            </view>
+            
+            </block>
+            
+            </form>
+           
+        </view>
+        
+        <view class="goods-info">
+            <view class="row-box">
+                <view class="row-label">订单金额</view>
+                <view class="right-text">¥ {{order.totalPrice}}</view>
+            </view>
+           
+            <view class="row-box">
+                <view class="row-label">支付说明</view>
+                <view class="right-text">{{order.payDes}}</view>
+            </view>
+            <view class="row-box">
+                <view class="row-label">备注</view>
+                <view class="right-text">{{order.note}}</view>
+            </view>
+        </view>
+</view>

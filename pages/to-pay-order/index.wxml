@@ -1,0 +1,54 @@
+<view class="container">
+     <form bindsubmit="createOrder" report-submit="true">
+     <view class="address-box">
+        <view class="add-address" hidden="{{curAddressData.address}}">
+            <view class="title" bindtap="addAddress">{{ pageInfo.AddAddress || '新增收货地址'}}</view>
+        </view>
+        <view class="show-address" hidden="{{!curAddressData.address}}" bindtap="selectAddress">
+            <view class="name-tel">{{curAddressData.linkMan}}  {{curAddressData.mobile}}</view>
+            <view class="addr-text">{{curAddressData.address}}</view>
+        </view>
+     </view>
+     <view class="goods-list">
+        <view class="list-title">{{ pageInfo.GoodsList || '商品列表'}}</view>
+        <view class="a-goods" wx:for-items="{{goodsList}}" wx:key="{{index}}">
+            <view class="img-box">
+                <image src="{{ picUrl+ item.ShowUrl}}_s.jpg" class="img" />
+            </view>
+            <view class="text-box">
+                <view class="arow arow01">
+                    <view class="goods-name">{{item.Name}}</view>
+                    <view class="goods-price">¥ {{item.Price}}</view>
+                </view>
+                <view class="arow">
+                    <view class="goods-label">{{item.SpecName}}</view>
+                    <view class="goods-num">x {{item.Num}}</view>
+                </view>
+            </view>
+        </view>
+     </view>
+     <view class="peisong-way">
+        <view class="row-box">
+            <view class="row-label">{{pageInfo.TransType || '配送方式'}}</view>
+            <view class="right-text">{{pageInfo.TransTypeContent || '双方协商'}}</view>
+        </view>
+        <view class="row-box">
+            <view class="row-label">{{pageInfo.Note || '备注'}}</view>
+            <view class="right-text">
+            <textarea  name="remark"  class="liuyan" placeholder="如需备注请输入"></textarea>
+            </view>
+        </view>
+        <view class="row-box" wx:if="{{pageInfo.IntruContent }}">
+            <view class="row-label">{{pageInfo.Intru || '说明'}}</view>
+            <view class="right-text">{{pageInfo.IntruContent || ''}}</view>
+        </view>
+     </view>
+     <view class='jiesuan-black'></view>
+     <view class="jiesuan-box">
+        <view class="left-price">
+            <view class="total">合计：¥ {{allGoodsPrice}} ；共 {{totalNum}} 件</view>
+        </view>
+        <button class="to-pay-btn" formType="submit">{{ pageInfo.SubmitOrder || '提交订单'}}</button>
+    </view>
+    </form>
+</view>

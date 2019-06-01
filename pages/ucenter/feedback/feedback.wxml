@@ -1,0 +1,45 @@
+<view class='container'>
+  <form bindsubmit='submitAdvice' class='form'>
+    <view class='row-box'>
+      <view class='row-lable {{ needReply?"required":""}}'>
+        手机号码：
+      </view>
+      <view class='right-text'>
+        <input placeholder='请输入你的手机号码' name="mobile"></input>
+
+      </view>
+      
+    </view>
+    <view class='row-box'>
+      <view class='row-lable' style='width:55px;'>
+        姓名：
+      </view>
+      <view class='right-text'>
+        <input placeholder='请输入你的名字' name="name" value='{{userName}}'></input>
+      </view>
+      <view>
+        <button size='mini' bindtap="goLogin">授权</button>
+      </view>
+    </view>
+    <view class='row-box'>
+      <view class='row-lable' style=' height:65rpx;line-height:65rpx;'>
+        需要反馈：
+      </view>
+      <view class='right-text'>
+         <switch name="isNeedReply" bindchange="isNeedReplyChange"/>
+      </view>
+    </view>
+     <view class='row-box'>
+      <view class='row-lable'>
+        意见：
+      </view>
+      <view class='right-text'>
+        <textarea name="content" auto-height="true" placeholder='请输入你的宝贵意见'>
+        </textarea>
+      </view>
+    </view>
+    <view style='margin-top:30rpx;padding-right:33px;'>
+    <button formType="submit" disabled='{{!canSubmit}}'>提 交</button>
+    </view>
+  </form>
+</view>

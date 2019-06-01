@@ -1,0 +1,109 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+} 
+.required:before{
+  color: red;
+  content: "*"
+}
+.wxParse-img {
+  display: block !important;
+}
+
+.swiper-tab{  
+    width: 100%;  
+    
+    text-align: center;  
+    line-height: 80rpx;}  
+ .swiper-tab-list{ 
+   font-size: 30rpx;  
+    display: inline-block;  
+    width: 50%;  
+    color: #777777;  
+}  
+.swiper-tab .on{ 
+   color: #da7c0c;  
+    border-bottom: 5rpx solid #da7c0c;
+  }  
+  
+
+.row-box{
+    font-size: 28rpx;
+    width:93%;
+    display: flex;
+    box-sizing: border-box;
+    padding: 12rpx 0 12rpx 10rpx;
+    border-bottom: 1rpx solid #eee;
+}
+.row-box .row-label{
+    font-size: 30rpx;
+    color: #000;
+    min-width: 120rpx;
+    /* font-weight: 600; */
+}
+.row-box .right-text{
+    font-size: 28rpx;
+    color: #666;
+    padding-left: 20rpx;
+}
+.row-box .icon{
+  width:60rpx;
+  height:60rpx;
+  margin-top:-8rpx;
+}
+
+.search-header{
+    top: 0;
+    width: 750rpx;
+    height: 91rpx;
+    display: flex;
+    background: #fff;
+    border-bottom: 1px solid rgba(0,0,0,.15);
+    padding: 0 31.25rpx;
+    font-size: 29rpx;
+    color: #333;
+}
+
+.search-header .input-box{
+    position: relative;
+    margin-top: 16rpx;
+    float: left;
+    width: 0;
+    flex: 1;
+    height: 59rpx;
+    line-height: 59rpx;
+    padding: 0 20rpx;
+    background: #f4f4f4;
+}
+
+.search-header .icon{
+    position: absolute;
+    top: 14rpx;
+    left: 20rpx;
+    width: 31rpx;
+    height: 31rpx;
+}
+
+.search-header .del{
+    position: absolute;
+    top: 9rpx;
+    right: 10rpx;
+    width: 45rpx;
+    height: 45rpx;
+    z-index: 10;
+}
+
+.search-header .keywrod{
+    position: absolute;
+    top: 0;
+    left: 40rpx;
+    width: 506rpx;
+    height: 59rpx;
+    padding-left: 30rpx;
+}
+  

@@ -1,0 +1,43 @@
+<view wx:if="{{cartGoodsList.length<=0}}">
+  <view class="title-box">
+    购物车空空如也～
+  </view>
+  <view class="to-index-btn" bindtap="toIndexPage">
+    去逛逛
+  </view>
+</view>
+
+<view wx:if="{{cartGoodsList.length>0}}">
+  <view class="goodsList">
+    <view class="a-gooods" wx:for="{{cartGoodsList}}" wx:key="{{index}}">
+      <view class="a-goods-conts {{item.Selected? 'active':''}}" bindtap="selectTap" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}" style="{{item.left}}">
+        <view class="goods-info">
+          <view class="img-box">
+            <image src="{{picUrl+item.ShowUrl}}_s.jpg" class="img" />
+          </view>
+          <view class="text-box">
+            <view class="goods-title">{{item.Name}}</view>
+            <view class="goods-label">{{item.SpecName}}</view>
+            <view class="goods-price">¥ {{item.Price}}</view>
+            <view class="buy-num">
+              <view class="jian-btn" catchtap="jianBtnTap" data-index="{{index}}">-</view>
+              <input type="number" value="{{item.Num}}" disabled/>
+              <view class="jia-btn" catchtap="jiaBtnTap" data-index="{{index}}">+</view>
+            </view>
+          </view>
+        </view>
+        <view class="delete-btn" data-index="{{index}}" catchtap="delItem">
+          删除
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="jiesuan-box">
+    <view class="left-price">
+      <view class="all-selected  {{allSelect?'active':''}}" bindtap="bindAllSelect">全选</view>
+      <view class="total">合计：¥ {{selectedTotalPrice}} + 共{{selectedTotalNum}} 件</view>
+    </view>
+    <view class="to-pay-btn " bindtap="toPayOrder">{{pageInfo.GoAcc || '去结算'}}</view>
+
+  </view>
+</view>
